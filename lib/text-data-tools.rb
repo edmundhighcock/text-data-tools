@@ -1,5 +1,5 @@
 
-module TextFileTools
+module TextDataTools
 	#  Return a one-dimensional array containing data from the file filename,
 	#   which may or may not have a line of column headers,
 	#  in the column column_header, where column_header maybe either a string
