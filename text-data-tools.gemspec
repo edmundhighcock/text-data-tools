@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "text-data-tools"
-  s.version = "1.0.0"
+  s.version = "1.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Edmund Highcock"]
@@ -27,7 +27,8 @@ Gem::Specification.new do |s|
     "test/helper.rb",
     "test/test_dat.dat",
     "test/test_dat_2.dat",
-    "test/test_text-data-tools.rb"
+    "test/test_text-data-tools.rb",
+    "text-data-tools.gemspec"
   ]
   s.homepage = "http://github.com/edmundhighcock/text-data-tools"
   s.licenses = ["GPLv3"]
