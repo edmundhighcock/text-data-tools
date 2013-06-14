@@ -1,7 +1,7 @@
 
 module TextDataTools
 	#  Return a one-dimensional array containing data from the file filename,
-	#   which may or may not have a line of column headers,
+	#  which may or may not have a line of column headers,
 	#  in the column column_header, where column_header maybe either a string
 	#  or a regex which matches the title of the column,  or an integer
 	#  giving the zero-based  column number.
@@ -38,12 +38,12 @@ module TextDataTools
 	end
 
 	#  Return a two-dimensional array containing data from the file filename,
-	#   which may or may not have a line of column headers,
+	#  which may or may not have a line of column headers,
 	#  in the column column_header, where column_header maybe either a string
 	#  or a regex which matches the title of the column,  or an integer
 	#  giving the zero-based  column number.
 	#
-	#	 It is assumed that two-dimensional array is in one column. 
+	#  It is assumed that two-dimensional array is in one column. 
 	#  If index_header is nil, data is assumed to be separated by blank lines.
 	#  E.g.
 	#  		1.2
@@ -153,10 +153,12 @@ module TextDataTools
 		column_header = index_array.index(index_array.compact[0])
 	end
 
-	#  This is a simple class which can interface with the methods of TextFileTools
-	#  to prevent the user having to specify the file name for every call. In a
-	#  nutshell, create a new instance of this class giving it the filename,
-	#  then call methods from TextFileTools omitting the first argument.
+	# This is a simple class which can interface with the methods of TextFileTools
+	# to prevent the user having to specify the file name and other properties of the 
+	# data file for every call. In a
+	# nutshell, create a new instance of this class giving it the filename, and any
+	# appropriate options,
+	# then call methods from TextFileTools omitting the appropriate arguments.
 	class TextDataFile
 		def initialize(filename, has_header_line = false, match = /\S+/, header_match = /\S+/)
 			@filename = filename
