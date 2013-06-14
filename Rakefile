@@ -16,9 +16,9 @@ Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "text-data-tools"
   gem.homepage = "http://github.com/edmundhighcock/text-data-tools"
-  gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.license = "GPLv3"
+  gem.summary = %Q{A small set of tools for reading text based data files into arrays.}
+  gem.description = %Q{A small set of tools for reading text based data files into arrays. Works ee.g. for simple columnar data with or without headings.}
   gem.email = "edmundhighcock@sourceforge.net"
   gem.authors = ["Edmund Highcock"]
   # dependencies defined in Gemfile
@@ -32,13 +32,13 @@ Rake::TestTask.new(:test) do |test|
   test.verbose = true
 end
 
-require 'rcov/rcovtask'
-Rcov::RcovTask.new do |test|
-  test.libs << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
-  test.rcov_opts << '--exclude "gems/*"'
-end
+#require 'rcov/rcovtask'
+#Rcov::RcovTask.new do |test|
+  ##test.libs << 'test'
+  ##test.pattern = 'test/**/test_*.rb'
+  ##test.verbose = true
+  ##test.rcov_opts << '--exclude "gems/*"'
+##end
 
 task :default => :test
 

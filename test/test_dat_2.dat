@@ -1,0 +1,20 @@
+ Q:    11.989644168449118     
+ Fusion power:    484.34196189744871     
+ Net power:    138.68949894790680     
+ Auxiliary power:    41.749004487647194     
+ Alpha power:    116.90499891894469     
+ Radiated power:    99.980803847994007     
+
+ Core density:    1.0400000000000000     
+ Edge density:    1.0116440934700969     
+ Core T_i:    91.870761489394619     
+ Core T_e:    46.999819474079938     
+ Edge T_i:    4.9863981904130986     
+ Edge T_e:    4.3171799196418704     
+ Core omega:    0.0000000000000000     
+ Edge omega:    0.0000000000000000     
+
+ Total stored thermal energy (MJ):    414.09910378179146     
+ Total stored thermal energy (MJ) from initial condition:    418.74183188999439     
+ Incremental stored thermal energy (MJ):    309.80343864467043     
+ Incremental stored thermal energy (MJ) from initial condition:    914.46396674694439     
