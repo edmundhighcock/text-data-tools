@@ -168,7 +168,19 @@ module TextDataTools
 		def get_1d_array(column_header)
 			TextFileTools.get_1d_array(@filename, @has_header_line, column_header, @match, @header_match)
 		end
+		def get_1d_array_float(column_header)
+			TextFileTools.get_1d_array_float(@filename, @has_header_line, column_header, @match, @header_match)
+		end
+		def get_1d_array_integer(column_header)
+			TextFileTools.get_1d_array_integer(@filename, @has_header_line, column_header, @match, @header_match)
+		end
 		def get_2d_array(column_header, index_header)
+			TextFileTools.get_2d_array(@filename, @has_header_line, column_header, index_header, @match, @header_match)
+		end
+		def get_2d_array_float(column_header, index_header)
+			TextFileTools.get_2d_array(@filename, @has_header_line, column_header, index_header, @match, @header_match)
+		end
+		def get_2d_array_integer(column_header, index_header)
 			TextFileTools.get_2d_array(@filename, @has_header_line, column_header, index_header, @match, @header_match)
 		end
 		def get_variable_value(name, sep)
