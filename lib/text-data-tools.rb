@@ -33,6 +33,9 @@ module TextFileTools
 	def self.get_1d_array_float(*args)
 		get_1d_array(*args).map{|v| v.to_f}
 	end
+	def self.get_1d_array_integer(*args)
+		get_1d_array(*args).map{|v| v.to_i}
+	end
 
 	#  Return a two-dimensional array containing data from the file filename,
 	#   which may or may not have a line of column headers,
@@ -115,6 +118,9 @@ module TextFileTools
 	# Calls get_2d_array and converts all data elements to floats
 	def self.get_2d_array_float(*args)
 		get_2d_array(*args).map{|a| a.map{|v| v.to_f}}
+	end
+	def self.get_2d_array_integer(*args)
+		get_2d_array(*args).map{|a| a.map{|v| v.to_i}}
 	end
 
 	class NotFoundError < StandardError
