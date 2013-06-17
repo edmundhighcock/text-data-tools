@@ -178,10 +178,10 @@ module Column
 			TextDataTools::Column.get_2d_array(@filename, @has_header_line, column_header, index_header, @match, @header_match)
 		end
 		def get_2d_array_float(column_header, index_header)
-			TextDataTools::Column.get_2d_array(@filename, @has_header_line, column_header, index_header, @match, @header_match)
+			TextDataTools::Column.get_2d_array_float(@filename, @has_header_line, column_header, index_header, @match, @header_match)
 		end
 		def get_2d_array_integer(column_header, index_header)
-			TextDataTools::Column.get_2d_array(@filename, @has_header_line, column_header, index_header, @match, @header_match)
+			TextDataTools::Column.get_2d_array_integer(@filename, @has_header_line, column_header, index_header, @match, @header_match)
 		end
 		def exists?
 			FileTest.exists?(@filename)
