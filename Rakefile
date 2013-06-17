@@ -11,6 +11,7 @@ rescue Bundler::BundlerError => e
 end
 require 'rake'
 
+
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
@@ -51,3 +52,4 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
+Rake.application.options.trace = false

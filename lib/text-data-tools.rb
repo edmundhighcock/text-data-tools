@@ -1,6 +1,20 @@
 require 'fileutils'
 
+# This is a set of tools for extracting data from simple text files, where the data appears in regular formats, for example columns.
+# For more information see the individual submodules.
 module TextDataTools
+
+class DataFileBase
+
+		def exists?
+			FileTest.exists?(@filename)
+		end
+
+end
+
+# Tools for extracting data from text files where the data appears in columns
+# with or without headers for each column.
+module Column
 	#  Return a one-dimensional array containing data from the file filename,
 	#  which may or may not have a line of column headers,
 	#  in the column column_header, where column_header maybe either a string
@@ -127,6 +141,66 @@ module TextDataTools
 	class NotFoundError < StandardError
 	end
 
+	def self.column_index_from_headers(line, column_header, header_match)
+		headers = line.scan(header_match)
+		#p headers
+		index_array = headers.map{|head| head =~ (column_header.kind_of?(Regexp) ? column_header : Regexp.new(Regexp.escape(column_header)))}
+		#p index_array
+		raise ArgumentError.new("column_header: #{column_header.inspect} does not match any columns in #{headers.inspect}") if index_array.compact.size == 0
+		raise ArgumentError.new("column_header: #{column_header.inspect} matches more than 1 column in #{headers.inspect}") if index_array.compact.size > 1
+		column_header = index_array.index(index_array.compact[0])
+	end
+
+	# This is a simple class which can interface with the methods of TextDataTools::Column
+	# to prevent the user having to specify the file name and other properties of the 
+	# data file for every call. In a
+	# nutshell, create a new instance of this class giving it the filename, and any
+	# appropriate options,
+	# then call methods from TextDataTools omitting the appropriate arguments.
+	class DataFile < DataFileBase
+		def initialize(filename, has_header_line = false, match = /\S+/, header_match = /\S+/)
+			@filename = filename
+			@match = match
+			@header_match = header_match
+			@has_header_line = has_header_line
+			self
+		end
+		def get_1d_array(column_header)
+			TextDataTools::Column.get_1d_array(@filename, @has_header_line, column_header, @match, @header_match)
+		end
+		def get_1d_array_float(column_header)
+			TextDataTools::Column.get_1d_array_float(@filename, @has_header_line, column_header, @match, @header_match)
+		end
+		def get_1d_array_integer(column_header)
+			TextDataTools::Column.get_1d_array_integer(@filename, @has_header_line, column_header, @match, @header_match)
+		end
+		def get_2d_array(column_header, index_header)
+			TextDataTools::Column.get_2d_array(@filename, @has_header_line, column_header, index_header, @match, @header_match)
+		end
+		def get_2d_array_float(column_header, index_header)
+			TextDataTools::Column.get_2d_array(@filename, @has_header_line, column_header, index_header, @match, @header_match)
+		end
+		def get_2d_array_integer(column_header, index_header)
+			TextDataTools::Column.get_2d_array(@filename, @has_header_line, column_header, index_header, @match, @header_match)
+		end
+		def exists?
+			FileTest.exists?(@filename)
+		end
+		#def method_missing(meth, *args)
+			#if TextDataTools.methods.include? meth
+				#TextDataTools.send(meth, @filename, *args) 
+			#else
+				#super
+			#end
+		#end
+	end
+end
+
+#  Tools for dealing with files where named variables are assigned in the form
+#    name sep base
+#  E.g.
+#    height = 4.0
+module Named
 	# Extract a variable value from the given file where the variable is defined
 	# in this form:
 	#   name sep value
@@ -144,60 +218,21 @@ module TextDataTools
 		raise NotFoundError.new("Can't find #{name} in #{filename}") unless value
 		value
 	end
-	def self.column_index_from_headers(line, column_header, header_match)
-		headers = line.scan(header_match)
-		#p headers
-		index_array = headers.map{|head| head =~ (column_header.kind_of?(Regexp) ? column_header : Regexp.new(Regexp.escape(column_header)))}
-		#p index_array
-		raise ArgumentError.new("column_header: #{column_header.inspect} does not match any columns in #{headers.inspect}") if index_array.compact.size == 0
-		raise ArgumentError.new("column_header: #{column_header.inspect} matches more than 1 column in #{headers.inspect}") if index_array.compact.size > 1
-		column_header = index_array.index(index_array.compact[0])
-	end
-
-	# This is a simple class which can interface with the methods of TextDataTools
+	# This is a simple class which can interface with the methods of TextDataTools::Named
 	# to prevent the user having to specify the file name and other properties of the 
 	# data file for every call. In a
 	# nutshell, create a new instance of this class giving it the filename, and any
 	# appropriate options,
 	# then call methods from TextDataTools omitting the appropriate arguments.
-	class TextDataFile
-		def initialize(filename, has_header_line = false, match = /\S+/, header_match = /\S+/)
+	class DataFile < DataFileBase
+		def initialize(filename, sep = ':')
 			@filename = filename
-			@match = match
-			@header_match = header_match
-			@has_header_line = has_header_line
+			@sep = sep
 			self
 		end
-		def get_1d_array(column_header)
-			TextDataTools.get_1d_array(@filename, @has_header_line, column_header, @match, @header_match)
+		def get_variable_value(name)
+			TextDataTools::Named.get_variable_value(@filename, name, @sep)
 		end
-		def get_1d_array_float(column_header)
-			TextDataTools.get_1d_array_float(@filename, @has_header_line, column_header, @match, @header_match)
-		end
-		def get_1d_array_integer(column_header)
-			TextDataTools.get_1d_array_integer(@filename, @has_header_line, column_header, @match, @header_match)
-		end
-		def get_2d_array(column_header, index_header)
-			TextDataTools.get_2d_array(@filename, @has_header_line, column_header, index_header, @match, @header_match)
-		end
-		def get_2d_array_float(column_header, index_header)
-			TextDataTools.get_2d_array(@filename, @has_header_line, column_header, index_header, @match, @header_match)
-		end
-		def get_2d_array_integer(column_header, index_header)
-			TextDataTools.get_2d_array(@filename, @has_header_line, column_header, index_header, @match, @header_match)
-		end
-		def get_variable_value(name, sep)
-			TextDataTools.get_variable_value(@filename, name, sep)
-		end
-		def exists?
-			FileTest.exists?(@filename)
-		end
-		#def method_missing(meth, *args)
-			#if TextDataTools.methods.include? meth
-				#TextDataTools.send(meth, @filename, *args) 
-			#else
-				#super
-			#end
-		#end
 	end
+end
 end # module TextDataTools

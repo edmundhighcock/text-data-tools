@@ -1,6 +1,19 @@
 = text-data-tools
 
-Description goes here.
+This is a set of tools for extracting data from simple text files, where the data appears in regular formats, for example columns.
+
+== Examples
+
+These are taken from the test suite.
+
+Named variables:
+		file = TextDataTools::Named::DataFile.new('test/test_dat_2.dat', ':')
+		alpha_power = file.get_variable_value('Alpha power').to_f
+
+Columnar Data:
+		file = TextDataTools::Column::DataFile.new('test/test_dat.dat', true, /\S+/,  /(?:\#\s+)?\d:.*?(?=\d:)/)
+		array = file.get_2d_array(/i\+ temp/, /1.*time/)
+
 
 == Contributing to text-data-tools
  
