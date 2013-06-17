@@ -206,11 +206,13 @@ module Named
 	#   name sep value
 	# E.g.
 	# 	heat = 4.0
+	#
+	# Both name and sep can be either regexps or strings
 	def self.get_variable_value(filename, name, sep='=')
 		value = nil
 		File.open(filename) do |file|
 			while line= file.gets
-				next unless line =~ Regexp.new("#{Regexp.escape(name)}\\s*#{Regexp.escape(sep)}\\s*(?<value>.*)")
+				next unless line =~ Regexp.new("#{name.kind_of?(Regexp) ? name : Regexp.escape(name) }\\s*#{sep.kind_of?(Regexp) ? sep : Regexp.escape(sep) }\\s*(?<value>.*)")
 				value = $~[:value]
 					
 			end
