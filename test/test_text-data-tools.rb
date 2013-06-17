@@ -35,5 +35,6 @@ class TestTextDataTools < Test::Unit::TestCase
 		file = TextDataTools::TextDataFile.new('test/test_dat.dat', true, /\S+/,  /(?:\#\s+)?\d:.*?(?=\d:)/)
 		array = file.get_2d_array(/i\+ temp/, /1.*time/)
 		assert_equal(array.size, 2)
+		assert(file.exists?)
 	end
 end

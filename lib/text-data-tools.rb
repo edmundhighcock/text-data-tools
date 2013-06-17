@@ -1,3 +1,4 @@
+require 'fileutils'
 
 module TextDataTools
 	#  Return a one-dimensional array containing data from the file filename,
@@ -187,6 +188,9 @@ module TextDataTools
 		end
 		def get_variable_value(name, sep)
 			TextDataTools.get_variable_value(@filename, name, sep)
+		end
+		def exists?
+			FileTest.exists?(@filename)
 		end
 		#def method_missing(meth, *args)
 			#if TextDataTools.methods.include? meth
