@@ -36,5 +36,8 @@ class TestTextDataTools < Test::Unit::TestCase
 		array = file.get_2d_array(/i\+ temp/, /1.*time/)
 		assert_equal(array.size, 2)
 		assert(file.exists?)
+		array = file.get_2d_array_float(/i\+ temp/, 0)
+		assert_equal(array[0].size, 9)
+		assert_equal(array[1][0], 0.9753E+09)
 	end
 end
