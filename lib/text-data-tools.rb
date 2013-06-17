@@ -153,12 +153,12 @@ module TextDataTools
 		column_header = index_array.index(index_array.compact[0])
 	end
 
-	# This is a simple class which can interface with the methods of TextFileTools
+	# This is a simple class which can interface with the methods of TextDataTools
 	# to prevent the user having to specify the file name and other properties of the 
 	# data file for every call. In a
 	# nutshell, create a new instance of this class giving it the filename, and any
 	# appropriate options,
-	# then call methods from TextFileTools omitting the appropriate arguments.
+	# then call methods from TextDataTools omitting the appropriate arguments.
 	class TextDataFile
 		def initialize(filename, has_header_line = false, match = /\S+/, header_match = /\S+/)
 			@filename = filename
@@ -168,32 +168,32 @@ module TextDataTools
 			self
 		end
 		def get_1d_array(column_header)
-			TextFileTools.get_1d_array(@filename, @has_header_line, column_header, @match, @header_match)
+			TextDataTools.get_1d_array(@filename, @has_header_line, column_header, @match, @header_match)
 		end
 		def get_1d_array_float(column_header)
-			TextFileTools.get_1d_array_float(@filename, @has_header_line, column_header, @match, @header_match)
+			TextDataTools.get_1d_array_float(@filename, @has_header_line, column_header, @match, @header_match)
 		end
 		def get_1d_array_integer(column_header)
-			TextFileTools.get_1d_array_integer(@filename, @has_header_line, column_header, @match, @header_match)
+			TextDataTools.get_1d_array_integer(@filename, @has_header_line, column_header, @match, @header_match)
 		end
 		def get_2d_array(column_header, index_header)
-			TextFileTools.get_2d_array(@filename, @has_header_line, column_header, index_header, @match, @header_match)
+			TextDataTools.get_2d_array(@filename, @has_header_line, column_header, index_header, @match, @header_match)
 		end
 		def get_2d_array_float(column_header, index_header)
-			TextFileTools.get_2d_array(@filename, @has_header_line, column_header, index_header, @match, @header_match)
+			TextDataTools.get_2d_array(@filename, @has_header_line, column_header, index_header, @match, @header_match)
 		end
 		def get_2d_array_integer(column_header, index_header)
-			TextFileTools.get_2d_array(@filename, @has_header_line, column_header, index_header, @match, @header_match)
+			TextDataTools.get_2d_array(@filename, @has_header_line, column_header, index_header, @match, @header_match)
 		end
 		def get_variable_value(name, sep)
-			TextFileTools.get_variable_value(@filename, name, sep)
+			TextDataTools.get_variable_value(@filename, name, sep)
 		end
 		#def method_missing(meth, *args)
-			#if TextFileTools.methods.include? meth
-				#TextFileTools.send(meth, @filename, *args) 
+			#if TextDataTools.methods.include? meth
+				#TextDataTools.send(meth, @filename, *args) 
 			#else
 				#super
 			#end
 		#end
 	end
-end # module TextFileTools
+end # module TextDataTools
