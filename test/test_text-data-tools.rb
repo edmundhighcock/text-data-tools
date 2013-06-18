@@ -23,6 +23,11 @@ class TestTextDataTools < Test::Unit::TestCase
 		#assert_equal(array[9].to_f, 0.9753E+09)
 
 	end
+	def test_2d_newlines
+		file = TextDataTools::Column::DataFile.new('test/test_dat_new_lines.dat', true, /\S+/,  /(?:\#\s+)?\d:.*?(?=\d:)/)
+		array = file.get_2d_array(/Qi.*GB/, /1.*time/)
+		assert_equal(24, array[0].size)
+	end
 	def test_get_variable
 		variable = TextDataTools::Named.get_variable_value('test/test_dat_2.dat', 'Q', ':')
 		assert_equal(variable.to_f, 11.989644168449118)
