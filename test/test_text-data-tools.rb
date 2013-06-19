@@ -45,4 +45,12 @@ class TestTextDataTools < Test::Unit::TestCase
 		assert_equal(array[0].size, 9)
 		assert_equal(array[1][0], 0.9753E+09)
 	end
+	def test_inspect
+		file1 = TextDataTools::Named::DataFile.new('test/test_dat_2.dat', ':')
+		file2 = TextDataTools::Column::DataFile.new('test/test_dat.dat', true, /\S+/,  /(?:\#\s+)?\d:.*?(?=\d:)/)
+		file1a = eval(file1.inspect) 
+		file2a = eval(file2.inspect) 
+		assert_equal(file1.instance_variable_get(:@filename), file1a.instance_variable_get(:@filename))
+		assert_equal(file2.instance_variable_get(:@header_match), file2a.instance_variable_get(:@header_match))
+	end
 end

@@ -158,6 +158,9 @@ module Column
 	# appropriate options,
 	# then call methods from TextDataTools omitting the appropriate arguments.
 	class DataFile < DataFileBase
+		def inspect
+			"#{self.class}.new(#{@filename.inspect}, #{@has_header_line.inspect}, #{@match.inspect}, #{@header_match.inspect})"
+		end
 		def initialize(filename, has_header_line = false, match = /\S+/, header_match = /\S+/)
 			@filename = filename
 			@match = match
@@ -231,6 +234,9 @@ module Named
 			@filename = filename
 			@sep = sep
 			self
+		end
+		def inspect
+			"#{self.class}.new(#{@filename.inspect}, #{@sep.inspect})"
 		end
 		def get_variable_value(name)
 			TextDataTools::Named.get_variable_value(@filename, name, @sep)
