@@ -53,4 +53,9 @@ class TestTextDataTools < Test::Unit::TestCase
 		assert_equal(file1.instance_variable_get(:@filename), file1a.instance_variable_get(:@filename))
 		assert_equal(file2.instance_variable_get(:@header_match), file2a.instance_variable_get(:@header_match))
 	end
+	def test_to_s
+		file1 = TextDataTools::Named::DataFile.new('test/test_dat_2.dat', ':')
+		#file1.view
+		assert_equal('test/test_dat_2.dat', file1.to_s)
+	end
 end

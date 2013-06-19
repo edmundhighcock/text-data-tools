@@ -9,6 +9,12 @@ class DataFileBase
 		def exists?
 			FileTest.exists?(@filename)
 		end
+		def to_s
+			@filename
+		end
+		def view
+			system ENV['EDITOR'], @filename
+		end
 
 end
 
