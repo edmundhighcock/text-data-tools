@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "text-data-tools"
-  s.version = "1.1.3"
+  s.version = "1.1.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Edmund Highcock"]
-  s.date = "2013-06-17"
+  s.date = "2013-06-19"
   s.description = "A small set of tools for reading text based data files into arrays. Works ee.g. for simple columnar data with or without headings."
   s.email = "edmundhighcock@sourceforge.net"
   s.extra_rdoc_files = [
@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
     "test/helper.rb",
     "test/test_dat.dat",
     "test/test_dat_2.dat",
+    "test/test_dat_new_lines.dat",
     "test/test_text-data-tools.rb",
     "text-data-tools.gemspec"
   ]
