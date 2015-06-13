@@ -31,7 +31,7 @@ module Column
 	#  matches items in the headers.
 	#
 	#  All data is returned as strings
-	def self.get_1d_array(filename, has_header_line, column_header, match=/\S+/, header_match=/\S+/)
+	def self.get_1d_array(filename, has_header_line, column_header, match=/\S+/, header_match=/\S+/, skip_blank=true)
 		raise ArgumentError.new("column_header header should be a string, regex or integer") unless [String, Regexp, Integer].find{|cls| column_header.kind_of? cls}
 		array = []
 		File.open(filename) do |file|
@@ -41,6 +41,7 @@ module Column
 				column_header = column_index_from_headers(headers, column_header, header_match)
 			end
 			while line = file.gets
+        next if line == "\n" and skip_blank
 				values = line.scan(match)
 			 	array.push values[column_header]	
 				#puts line
